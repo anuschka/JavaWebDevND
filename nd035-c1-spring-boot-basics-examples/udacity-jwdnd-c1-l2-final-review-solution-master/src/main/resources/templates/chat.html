@@ -19,6 +19,17 @@
         <option th:value="Shout">Shout</option>
         <option th:value="Whisper">Whisper</option>
     </select>
+    <!-- other option for select multiple values
+    <select id="messageType" th:field="*{messageType}">
+        <option
+                th:each="type : ${allMessageTypes}"
+                th:value="${type}"
+                th:text="${type}"
+        >
+            Say
+        </option>
+    </select>
+    -->
     <input type="submit">
 </form>
 <div th:each="chatMessage : ${chatMessages}">
