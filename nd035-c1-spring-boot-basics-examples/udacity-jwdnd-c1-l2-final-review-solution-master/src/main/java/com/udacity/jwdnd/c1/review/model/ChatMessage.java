@@ -2,21 +2,21 @@ package com.udacity.jwdnd.c1.review.model;
 
 public class ChatMessage {
     private String username;
-    private String message;
+    private String messagetext;
 
     public String getUsername() {
         return username;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getMessagetext() {
+        return messagetext;
+    }
+
+    public void setMessagetext(String messagetext) {
+        this.messagetext = messagetext;
     }
 }

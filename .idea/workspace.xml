@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76a4391b-d9f5-46b1-9fd3-19afab319ddf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/nd035-c1-spring-boot-basics-examples/udacity-jwdnd-c1-l3-mvc-and-you-1-master/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nd035-c1-spring-boot-basics-examples/udacity-jwdnd-c1-l3-mvc-and-you-1-master/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/nd035-c1-spring-boot-basics-examples" />
+  </component>
+  <component name="ProjectId" id="1kA8MQCjsLvZ7F2HjMVW5ppPjMl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76a4391b-d9f5-46b1-9fd3-19afab319ddf" name="Default Changelist" comment="" />
+      <created>1605131986375</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605131986375</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="125" width="1071" height="773" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605432364465">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="184" y="125" width="1071" height="773" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877/-1920.-477.1920.1057@0.23.1440.877" timestamp="1605432364465" />
+    <state x="553" y="359" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1605431966400">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="553" y="359" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1440.877/-1920.-477.1920.1057@0.23.1440.877" timestamp="1605431966400" />
+    <state x="221" y="100" key="SettingsEditor" timestamp="1605432264164">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="221" y="100" key="SettingsEditor/0.23.1440.877/-1920.-477.1920.1057@0.23.1440.877" timestamp="1605432264164" />
+    <state x="374" y="296" key="com.intellij.ide.util.TipDialog" timestamp="1605431881348">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="374" y="296" key="com.intellij.ide.util.TipDialog/0.23.1440.877/-1920.-477.1920.1057@0.23.1440.877" timestamp="1605431881348" />
+  </component>
+</project>

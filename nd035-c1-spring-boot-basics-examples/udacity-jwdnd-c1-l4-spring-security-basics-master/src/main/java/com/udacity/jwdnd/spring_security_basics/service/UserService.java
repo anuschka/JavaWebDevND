@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 @Service
-public class UserService {
+public class  UserService {
 
     private final UserMapper userMapper;
     private final HashService hashService;

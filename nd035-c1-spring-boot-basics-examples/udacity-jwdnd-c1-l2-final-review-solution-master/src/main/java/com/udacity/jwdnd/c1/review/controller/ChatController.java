@@ -28,8 +28,6 @@ public class ChatController {
     public String addMessage(ChatForm chatForm, Model model) {
         this.messageService.addMessage(chatForm);
         chatForm.setMessageText(""); //we clear the message text
-        chatForm.setMessageType("");
-        chatForm.setUsername("");
         model.addAttribute("chatMessages", messageService.getChatMessages());
         return "chat";
     }
