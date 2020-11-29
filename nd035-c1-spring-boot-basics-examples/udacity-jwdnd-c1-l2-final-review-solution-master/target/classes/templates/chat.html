@@ -34,7 +34,7 @@
     <input type="submit">
 </form>
 <div th:each="chatMessage : ${chatMessages}">
-    <span th:text="${chatMessage.username}">Username</span>: <span th:text="${chatMessage.message}">Hello, world!</span>
+    <span th:text="${chatMessage.username}">Username</span>: <span th:text="${chatMessage.messagetext}">Hello, world!</span>
 </div>
 </body>
 </html>
