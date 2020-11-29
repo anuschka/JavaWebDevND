@@ -11,9 +11,9 @@ import java.util.Base64;
 public class UserService {
 
     private final UserMapper userMapper;
-    private final com.udacity.jwdnd.spring_security_basics.service.HashService hashService;
+    private final HashService hashService;
 
-    public UserService(UserMapper userMapper, com.udacity.jwdnd.spring_security_basics.service.HashService hashService) {
+    public UserService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
     }
@@ -28,7 +28,7 @@ public class UserService {
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
         String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
-        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstname(), user.getLastname()));
+        return userMapper.insert(new User(user.getUsername(), encodedSalt, hashedPassword, user.getFirstname(), user.getLastname()));
     }
 
     public User getUser(String username) {

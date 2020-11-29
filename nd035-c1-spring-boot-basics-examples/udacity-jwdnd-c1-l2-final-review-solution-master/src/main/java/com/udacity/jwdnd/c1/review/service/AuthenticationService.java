@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.c1.review.service;
 
+
 import com.udacity.jwdnd.c1.review.mapper.UserMapper;
 import com.udacity.jwdnd.c1.review.model.User;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,14 +9,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 
 @Service
 public class AuthenticationService implements AuthenticationProvider {
     private UserMapper userMapper;
-    private com.udacity.jwdnd.spring_security_basics.service.HashService hashService;
+    private HashService hashService;
 
-    public AuthenticationService(UserMapper userMapper, com.udacity.jwdnd.spring_security_basics.service.HashService hashService) {
+    public AuthenticationService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
     }

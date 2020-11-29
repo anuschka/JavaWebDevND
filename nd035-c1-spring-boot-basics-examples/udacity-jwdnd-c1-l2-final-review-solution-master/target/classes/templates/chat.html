@@ -9,8 +9,9 @@
 </head>
 <body>
 <form th:object="${chatForm}" th:action="@{/chat}" action="#" method="POST">
+    <!--
     <label for="username">Username:</label>
-    <input id="username" type="text" th:field="*{username}">
+    <input id="username" type="text" th:field="*{username}">-->
     <label for="messageText">Message Text:</label>
     <input id="messageText" type="text" th:field="*{messageText}">
     <label for="messageType">Message Type: </label>

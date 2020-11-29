@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.c1.review.service;
 
+import com.udacity.jwdnd.c1.review.mapper.ChatMessageMapper;
 import com.udacity.jwdnd.c1.review.model.ChatForm;
 import com.udacity.jwdnd.c1.review.model.ChatMessage;
 import org.springframework.stereotype.Service;
@@ -10,8 +11,15 @@ import java.util.List;
 
 @Service
 public class MessageService {
+    //we replaced the in-memory list with a dependency on a message mapper class
+    private ChatMessageMapper chatMessageMapper;
 
-    private List<ChatMessage> chatMessages;
+    public MessageService(ChatMessageMapper chatMessageMapper) {
+        this.chatMessageMapper = chatMessageMapper;
+    }
+
+
+    //private List<ChatMessage> chatMessages;
     //private String message;
 
     //public MessageService(String message) {
@@ -30,7 +38,7 @@ public class MessageService {
     public void postConstruct() {
 
         System.out.println("Creating MessageService bean");
-        this.chatMessages = new ArrayList<>();
+        //this.chatMessages = new ArrayList<>();
     }
 
 
@@ -40,19 +48,19 @@ public class MessageService {
         newMessage.setUsername(chatForm.getUsername());
         switch (chatForm.getMessageType()){
             case "Say":
-                newMessage.setMessage(chatForm.getMessageText());
+                newMessage.setMessagetext(chatForm.getMessageText());
                 break;
             case "Shout":
-                newMessage.setMessage(chatForm.getMessageText().toUpperCase());
+                newMessage.setMessagetext(chatForm.getMessageText().toUpperCase());
                 break;
             case "Whisper":
-                newMessage.setMessage(chatForm.getMessageText().toLowerCase());
+                newMessage.setMessagetext(chatForm.getMessageText().toLowerCase());
                 break;
         }
-        this.chatMessages.add(newMessage);
+        chatMessageMapper.addMessage(newMessage);
     }
 
     public List<ChatMessage> getChatMessages() {
-        return chatMessages;
+        return chatMessageMapper.getAllMessages();
     }
 }
