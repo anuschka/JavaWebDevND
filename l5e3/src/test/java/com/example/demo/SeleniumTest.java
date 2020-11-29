@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class SeleniumTest {
@@ -18,7 +19,7 @@ public class SeleniumTest {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://localhost:8080/animal");
-
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         //find the fields we want by id and fill them in
         WebElement inputField = driver.findElement(By.id("animalText"));
