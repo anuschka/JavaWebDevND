@@ -33,6 +33,10 @@
     -->
     <input type="submit">
 </form>
+<form action="#" method="POST" th:action="@{'/logout'}">
+
+    <button id="logoutButton" type="submit" class="btn btn-secondary float-right">Logout</button>
+</form>
 <div th:each="chatMessage : ${chatMessages}">
     <span th:text="${chatMessage.username}">Username</span>: <span th:text="${chatMessage.messagetext}">Hello, world!</span>
 </div>
