@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -9,6 +10,8 @@ import java.util.Base64;
 
 @Service
 public class UserService {
+
+    public final static int USER_NOT_FOUND = -1;
 
     private final UserMapper userMapper;
     private final HashService hashService;
@@ -19,7 +22,11 @@ public class UserService {
     }
 
     public boolean isUsernameAvailable(String username) {
-        return userMapper.getUser(username) == null;
+        return userMapper.findUser(username) == null;
+    }
+
+    public String findCurrentUsername(Authentication authentication) {
+        return authentication.getName();
     }
 
     public int createUser(User user) {
@@ -31,7 +38,12 @@ public class UserService {
         return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
     }
 
-    public User getUser(String username) {
-        return userMapper.getUser(username);
+    public User findUser(final String username) {
+        return userMapper.findUser(username);
+    }
+
+    public Integer findUserId(final String username) {
+        User user = findUser(username);
+        return (user != null ? user.getUserId() : USER_NOT_FOUND);
     }
 }
