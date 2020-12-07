@@ -15,7 +15,7 @@
                 <span th:text="${successMessage}"></span>
                 <span>Your changes were successfully saved. Click <a id = "home-link" th:href = "@{/home}">here</a> to continue.</span>
             </div>
-            <div class="alert alert-danger fill-parent th:if="${errorMessage}"">
+            <div class="alert alert-danger fill-parent" th:if="${errorMessage}">
                 <h1 class="display-5">Error</h1>
                 <span th:text="${errorMessage}"></span>
                 <span>Your changes were not saved. Click <a id = "home1-link" th:href = "@{/home}">here</a> to continue.</span>
