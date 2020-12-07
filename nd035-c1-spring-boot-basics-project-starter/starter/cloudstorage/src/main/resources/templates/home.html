@@ -77,7 +77,9 @@
                                 <tbody>
                                     <tr th:each = "currentNote : ${notes}">
                                         <td>
-                                            <button type="button" class="btn btn-success" onclick="showNodeModal()">Edit</button>
+                                            <button type="button" class="btn btn-success" target="{currentNote.notetitle}" id="edit-note"
+                                                    th:attr="onclick=|showNoteModal(${currentNote.noteId},  '${currentNote.notetitle}' , '${currentNote.notedescription}' )|"
+                                            >Edit</button>
                                             <a class="btn btn-danger">Delete</a>
                                         </td>
                                         <th th:text = "${currentNote.title} "scope="row">Example Note Title</th>
