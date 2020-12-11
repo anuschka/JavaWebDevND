@@ -19,7 +19,7 @@ public class NoteService {
     }
 
     public int createNote(final Note note) {
-        return noteMapper.createNote(note);
+        return noteMapper.insertNote(note);
     }
 
     public void update(final Note note) {
@@ -40,5 +40,15 @@ public class NoteService {
 
     public void setSuccessfullySaved(boolean successfullySaved) {
         this.successfullySaved = successfullySaved;
+    }
+
+    public String getNoteTitle(Note note){
+        int noteId = note.getNoteId();
+        return noteMapper.getNotetile(noteId);
+    }
+
+    public int deleteNote(int noteId, int userId) {
+//        note.setUserId(userId);
+        return noteMapper.delete(noteId,userId);
     }
 }
