@@ -17,13 +17,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-
     private UserService userService;
     private NoteService noteService;
     private CredentialService credentialService;
     private List<Note> notes;
     private List<Credentials> credentials;
-
     public HomeController(final UserService userService, final NoteService noteService, CredentialService credentialService) {
         this.userService = userService;
         this.noteService = noteService;
@@ -34,30 +32,30 @@ public class HomeController {
         credentials = new ArrayList<>();
         notes = new ArrayList<>();
     }
-
+    @ModelAttribute("note")
+    public NoteForm getNoteForm(){
+        return new NoteForm();
+    }
+    @ModelAttribute("credential")
+    public CredentialsForm getCredentialsForm(){
+        return new CredentialsForm();
+    }
     @GetMapping
-    public String getHomeMap(@ModelAttribute("note") NoteForm noteForm,
-                             @ModelAttribute("credentials") CredentialsForm credentialsForm,
-                             Model model, Authentication authentication) {
+    public String getHomeMap(Model model, Authentication authentication) {
         User user = this.userService.findUser(authentication.getName());
         if(user == null || user.getUserId() == UserService.USER_NOT_FOUND) {
             return "home";
         }
-
         notes = noteService.findAllNotes(user.getUserId());
         credentials = credentialService.credsUpload(user.getUserId());
-
         if(notes == null) {
             notes = new ArrayList<>();
         }
         if(credentials == null) {
             notes = new ArrayList<>();
         }
-
-
         model.addAttribute("notes", notes);
         model.addAttribute("credentials", credentials);
-
         return "home";
     }
 }

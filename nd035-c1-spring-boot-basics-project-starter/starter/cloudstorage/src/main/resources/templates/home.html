@@ -142,8 +142,8 @@
                                 <tr th:each = "cred : ${credentials}">
                                     <td>
                                         <button type="button" class="btn btn-success"
-                                                th:attr="data-id=${cred.url}, data-usr=${cred.username}, data-pwd=${cred.password}"
-                                                th:onclick="showNoteModal(this.getAttribute('data-id'), this.getAttribute('data-usr'), this.getAttribute('data-pwd'));">Edit</button>
+                                                th:attr="data-id=${cred.credentialId}, data-url=${cred.url}, data-usr=${cred.username}, data-pwd=${cred.password}"
+                                                th:onclick="showCredentialModal(this.getAttribute('data-id'),  this.getAttribute('data-url'), this.getAttribute('data-usr'), this.getAttribute('data-pwd'));">Edit</button>
                                         <a class="btn btn-danger" th:href="@{/deleteCredential/{credentialId}/(credentialId=${cred.credentialId})}">Delete</a>
                                     </td>
                                     <th th:text = "${cred.url} "scope="row">Example url</th>
@@ -164,7 +164,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form th:object = "${credentials}"
+                                        <form th:object = "${credential}"
                                               th:action = "@{/insert-credential}"
                                               action="#"
                                               method="POST">

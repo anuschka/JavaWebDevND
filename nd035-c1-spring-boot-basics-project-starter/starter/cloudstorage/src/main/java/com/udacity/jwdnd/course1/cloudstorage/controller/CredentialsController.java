@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialsMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
+import com.udacity.jwdnd.course1.cloudstorage.model.CredentialsForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
@@ -17,24 +18,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CredentialsController {
     private CredentialService credentialService;
     private UserService userService;
-
     public CredentialsController(CredentialService credentialService, UserService userService) {
         this.credentialService = credentialService;
         this.userService = userService;
     }
-
+    private Credentials convertToCredentials(CredentialsForm credentialsForm, Integer userId){
+        Credentials credential = new Credentials();
+        credential.setUserId(userId);
+        credential.setCredentialId(credentialsForm.getCredentialId());
+        credential.setUrl(credentialsForm.getUrl());
+        credential.setUsername(credentialsForm.getUrl());
+        credential.setPassword(credentialsForm.getPassword());
+        return credential;
+    }
     @PostMapping("/insert-credential")
-    public String handleCredentialUploadAndEdit(Model model, @ModelAttribute("credentialForm") Credentials credentials, Authentication authentication ){
+    public String handleCredentialUploadAndEdit(Model model, @ModelAttribute("credential") CredentialsForm credentialsForm, Authentication authentication ){
         User user = this.userService.findUser(authentication.getName());
-        System.out.println("ID: " + credentials.getCredentialId());
         Integer userId = user.getUserId();
-        credentials.setUserId(userId);
+        Credentials credential = convertToCredentials(credentialsForm, userId);
+        System.out.println("ID: " + credential.getCredentialId());
         try{
-            if(credentials.getCredentialId() == 0){
-                credentialService.insertCreds(credentials, userId);
+            if(credential.getCredentialId() == 0){
+                credentialService.insertCreds(credential, userId);
                 model.addAttribute("message","New Credentials added successfully!");
             } else{
-                credentialService.updateCreds(credentials, userId);
+                credentialService.updateCreds(credential, userId);
                 model.addAttribute("message","Credentials updated successfully!");
             }
             model.addAttribute("success",true);
