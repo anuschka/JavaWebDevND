@@ -11,12 +11,12 @@ public interface CredentialsMapper {
     @Select("SELECT * FROM CREDENTIALS WHERE userid = #{userId}")
     List<Credentials> getCredsByUserId(long userId);
 
-    @Insert("INSERT INTO CREDENTIALS(url, username, password) " +
-            "VALUES(#{url}, #{username}, #{password})")
+    @Insert("INSERT INTO CREDENTIALS(url, username, key, password, userid) " +
+            "VALUES(#{url}, #{username}, #{key}, #{password}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     int insertCredential(Credentials credentials);
 
-    @Update("UPDATE CREDENTIALS SET credurl = #{url}, credusr = #{username}, credpwd = #{password} " +
+    @Update("UPDATE CREDENTIALS SET url = #{url}, username = #{username}, password = #{password} " +
             "WHERE credentialId = #{credentialId}")
     int updateCredential(Credentials credentials);
 
