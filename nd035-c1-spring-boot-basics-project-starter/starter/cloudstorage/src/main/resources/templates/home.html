@@ -142,8 +142,8 @@
                                 <tr th:each = "cred : ${credentials}">
                                     <td>
                                         <button type="button" class="btn btn-success"
-                                                th:attr="data-id=${cred.credentialId}, data-url=${cred.url}, data-usr=${cred.username}, data-pwd=${cred.decryptedPassword}"
-                                                th:onclick="showCredentialModal(this.getAttribute('data-id'),  this.getAttribute('data-url'), this.getAttribute('data-usr'), this.getAttribute('data-pwd'));">Edit</button>
+                                                th:attr="data-id=${cred.credentialId}, data-url=${cred.url}, data-usr=${cred.username}, data-pwd=${cred.password}, data-key=${cred.key}"
+                                                th:onclick="showCredentialModal(this.getAttribute('data-id'),  this.getAttribute('data-url'), this.getAttribute('data-usr'), encryptionService.decryptValue(getAttribute('data-pwd'), getAttribute('data-key'));">Edit</button>
                                         <a class="btn btn-danger" th:href="@{/deleteCredential/{credentialId}/(credentialId=${cred.credentialId})}">Delete</a>
                                     </td>
                                     <th th:text = "${cred.url} "scope="row">Example url</th>

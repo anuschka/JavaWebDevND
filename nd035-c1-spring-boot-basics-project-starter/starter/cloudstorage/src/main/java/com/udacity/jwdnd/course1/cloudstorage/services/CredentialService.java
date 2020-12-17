@@ -44,7 +44,6 @@ public class CredentialService {
         String[] result = encodePassword(creds.getPassword(), creds);
         creds.setPassword(result[0]);
         creds.setKey(result[1]);
-        creds.setDecryptedPassword(creds.getPassword());
         return credentialsMapper.insertCredential(creds);
     }
 
@@ -54,7 +53,6 @@ public class CredentialService {
         String[] result = encodePassword(creds.getPassword(), creds);
         creds.setPassword(result[0]);
         creds.setKey(result[1]);
-        creds.setDecryptedPassword(creds.getPassword());
         return credentialsMapper.updateCredential(creds);
     }
 
@@ -64,7 +62,6 @@ public class CredentialService {
             String encodedKey = credential.getKey();
             String encryptedPassword = credential.getPassword();
             String decryptedPassword = encryptionService.decryptValue(encryptedPassword, encodedKey);
-            credential.setDecryptedPassword(decryptedPassword);
             return credential;
         }).collect(Collectors.toList());
     }

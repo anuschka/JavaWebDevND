@@ -5,6 +5,7 @@ import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
 import com.udacity.jwdnd.course1.cloudstorage.model.CredentialsForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
+import com.udacity.jwdnd.course1.cloudstorage.services.EncryptionService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class CredentialsController {
         return credential;
     }
     @PostMapping("/insert-credential")
-    public String handleCredentialUploadAndEdit(Model model, @ModelAttribute("credential") CredentialsForm credentialsForm, Authentication authentication ){
+    public String handleCredentialUploadAndEdit(Model model, @ModelAttribute("credential") CredentialsForm credentialsForm, Authentication authentication, @ModelAttribute("encryptionService")EncryptionService encryptionService){
         User user = this.userService.findUser(authentication.getName());
         Integer userId = user.getUserId();
         Credentials credential = convertToCredentials(credentialsForm, userId);
