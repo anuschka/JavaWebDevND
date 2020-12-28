@@ -3,19 +3,19 @@ package com.udacity.jwdnd.course1.cloudstorage.model;
 public class File {
 
     private Integer fileId;
-    private String filename;
-    private String contenttype;
-    private Long filesize;
-    private Integer userid;
-    private byte[] filedata;
+    private String fileName;
+    private String contentType;
+    private Long fileSize;
+    private Integer userId;
+    private byte[] fileData;
 
-    public File(Integer fileId, String filename, String contenttype, Long filesize, Integer userid, byte[] filedata) {
+    public File(Integer fileId, String fileName, String contentType, Long fileSize, Integer userId, byte[] fileData) {
         this.fileId = fileId;
-        this.filename = filename;
-        this.contenttype = contenttype;
-        this.filesize = filesize;
-        this.userid = userid;
-        this.filedata = filedata;
+        this.fileName = fileName;
+        this.contentType = contentType;
+        this.fileSize = fileSize;
+        this.userId = userId;
+        this.fileData = fileData;
     }
 
     public File(){}
@@ -29,42 +29,42 @@ public class File {
     }
 
     public String getFilename() {
-        return filename;
+        return fileName;
     }
 
     public void setFilename(String filename) {
-        this.filename = filename;
+        this.fileName = fileName;
     }
 
     public String getContenttype() {
-        return contenttype;
+        return contentType;
     }
 
-    public void setContenttype(String contenttype) {
-        this.contenttype = contenttype;
+    public void setContenttype(String contentType) {
+        this.contentType = contentType;
     }
 
     public Long getFilesize() {
-        return filesize;
+        return fileSize;
     }
 
-    public void setFilesize(Long filesize) {
-        this.filesize = filesize;
+    public void setFilesize(Long fileSize) {
+        this.fileSize = fileSize;
     }
 
     public Integer getUserid() {
-        return userid;
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserid(Integer userId) {
+        this.userId = userId;
     }
 
     public byte[] getFiledata() {
-        return filedata;
+        return fileData;
     }
 
-    public void setFiledata(byte[] filedata) {
-        this.filedata = filedata;
+    public void setFiledata(byte[] fileData) {
+        this.fileData = fileData;
     }
 }
