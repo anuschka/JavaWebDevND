@@ -20,17 +20,23 @@ public class HomeController {
     private UserService userService;
     private NoteService noteService;
     private CredentialService credentialService;
+    private FileService fileService;
     private List<Note> notes;
     private List<Credentials> credentials;
-    public HomeController(final UserService userService, final NoteService noteService, CredentialService credentialService) {
+    private List<File> files;
+
+    public HomeController(final UserService userService, final NoteService noteService, CredentialService credentialService, FileService fileService) {
         this.userService = userService;
         this.noteService = noteService;
         this.credentialService = credentialService;
+        this.fileService = fileService;
     }
     @PostConstruct
     public void postConstruct(){
         credentials = new ArrayList<>();
         notes = new ArrayList<>();
+        files = new ArrayList<>();
+
     }
     @ModelAttribute("note")
     public NoteForm getNoteForm(){
@@ -40,6 +46,17 @@ public class HomeController {
     public CredentialsForm getCredentialsForm(){
         return new CredentialsForm();
     }
+
+    @ModelAttribute("encryptionService")
+    public EncryptionService getEncryptionService(){
+        return new EncryptionService();
+    }
+
+    @ModelAttribute("file")
+    public FileForm getFileForm(){
+        return new FileForm();
+    }
+
     @GetMapping
     public String getHomeMap(Model model, Authentication authentication) {
         User user = this.userService.findUser(authentication.getName());
@@ -48,14 +65,19 @@ public class HomeController {
         }
         notes = noteService.findAllNotes(user.getUserId());
         credentials = credentialService.credsUpload(user.getUserId());
+        files = fileService.filesUpload(user.getUserId());
         if(notes == null) {
             notes = new ArrayList<>();
         }
         if(credentials == null) {
             notes = new ArrayList<>();
         }
+        if(files == null) {
+            notes = new ArrayList<>();
+        }
         model.addAttribute("notes", notes);
         model.addAttribute("credentials", credentials);
+        model.addAttribute("files", files);
         return "home";
     }
 }

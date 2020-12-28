@@ -57,13 +57,7 @@ public class CredentialService {
     }
 
     public List<Credentials> credsUpload(int userId) {
-        List<Credentials> credentials = credentialsMapper.getCredsByUserId(userId);
-        return credentials.stream().map(credential -> {
-            String encodedKey = credential.getKey();
-            String encryptedPassword = credential.getPassword();
-            String decryptedPassword = encryptionService.decryptValue(encryptedPassword, encodedKey);
-            return credential;
-        }).collect(Collectors.toList());
+        return credentialsMapper.getCredsByUserId(userId);
     }
 
 
