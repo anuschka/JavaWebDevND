@@ -38,4 +38,12 @@ public class FileService {
         file.setUserid(userId);
         fileMapper.insertFile(file);
     }
+
+    public File findByFileId(Integer fileId) {
+        return fileMapper.getFileByFileId(fileId);
+    }
+
+    public void deleteFile(Integer fileId) {
+        fileMapper.deleteFile(fileId);
+    }
 }
