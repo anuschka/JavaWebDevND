@@ -25,10 +25,10 @@ public class NotePage {
     @FindBy(id="delete-note")
     private List<WebElement> deleteButton;
 
-    @FindBy(id="note-title")
+    @FindBy(id="noteTitle")
     private List<WebElement> titleList;
 
-    @FindBy(id="note-description")
+    @FindBy(id="noteDescription")
     private List<WebElement> descriptionList;
 
     @FindBy(id="note-title")
@@ -67,31 +67,7 @@ public class NotePage {
 
 
     }
-
-    public void changeToNoteNavigationTab(WebDriver driver){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
-    }
-
-    public void clickButtonAddNote(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.elementToBeClickable(this.addButton)).click();
-    }
-    public void createOrEditNote(WebDriver driver, String title, String description) {
-        String textInsideNoteTitle = inputTitle.getText();
-
-        if (textInsideNoteTitle.length() >= 0) {
-            inputTitle.clear();
-            inputDescription.clear();
-        }
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.elementToBeClickable(inputTitle)).sendKeys(title);
-        wait.until(ExpectedConditions.elementToBeClickable(inputDescription)).sendKeys(description);
-        wait.until(ExpectedConditions.elementToBeClickable(this.submitModalButton)).click();
-
-    }
-
+    
     public void addNote(WebDriver driver, String title, String description, WebElement nav){
         WebDriverWait wait = new WebDriverWait(driver, 60);
 

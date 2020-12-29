@@ -77,13 +77,13 @@
                                 <tbody>
                                     <tr th:each = "currentNote : ${notes}">
                                         <td>
-                                            <button type="button" class="btn btn-success"
+                                            <button type="button" class="btn btn-success" id="edit-note"
                                                     th:attr="data-id=${currentNote.noteId}, data-title=${currentNote.title}, data-desc=${currentNote.description}"
                                                     th:onclick="showNoteModal(this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-desc'));">Edit</button>
-                                            <a class="btn btn-danger" th:href="@{/deleteNote/{noteId}/(noteId=${currentNote.noteId})}">Delete</a>
+                                            <a class="btn btn-danger" id="delete-note" th:href="@{/deleteNote/{noteId}/(noteId=${currentNote.noteId})}">Delete</a>
                                         </td>
-                                        <th th:text = "${currentNote.title} "scope="row">Example Note Title</th>
-                                        <td th:text = "${currentNote.description}">Example Note Description </td>
+                                        <th th:text = "${currentNote.title} "scope="row" id="noteTitle">Example Note Title</th>
+                                        <td th:text = "${currentNote.description}" id="noteDescription">Example Note Description </td>
                                     </tr>
                                 </tbody>
                             </table>

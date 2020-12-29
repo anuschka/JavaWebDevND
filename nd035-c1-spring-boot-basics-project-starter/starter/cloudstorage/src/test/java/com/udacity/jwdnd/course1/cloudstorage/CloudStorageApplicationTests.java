@@ -60,6 +60,9 @@ class CloudStorageApplicationTests {
 	@Test
 	@Order(1)
 	public void testValidLoginLogout() {
+		//logout the user
+		homePage.logout();
+
 		//unauthenicated access redirects to login page
 		driver.get("http://localhost:" + this.port + "/home");
 		Assertions.assertEquals("Login", driver.getTitle());
@@ -127,7 +130,7 @@ class CloudStorageApplicationTests {
 		//verifies the home page is accessible
 		driver.get(baseUrl +"/home");
 
-
+		//creates a note and verifies it is displayed
 		WebElement nav = driver.findElement(By.id("nav-notes-tab"));
 		nav.click();
 		notePage.addNote(driver, "This is my title", "This is Description",nav);
@@ -141,6 +144,7 @@ class CloudStorageApplicationTests {
 		Assertions.assertEquals("This is my title", detail.get(0));
 		Assertions.assertEquals("This is Description", detail.get(1));
 
+		//edits a note anad verifies the changes are displayed
 		notePage.editNote(driver, "Edit title", "Edit Description");
 
 		driver.get("http://localhost:" + this.port +  "/home");
@@ -150,6 +154,7 @@ class CloudStorageApplicationTests {
 		Assertions.assertEquals("Edit Description", detail.get(0));
 		Assertions.assertEquals("This is Description", detail.get(1));
 
+		//deletes a note and verifies the note is no longer displayed
 		notePage.deleteNote(driver);
 		driver.get("http://localhost:" + this.port + "/home");
 
@@ -159,10 +164,9 @@ class CloudStorageApplicationTests {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//String noteSize = wait.until(driver -> driver.findElement(By.id("note-size")).getText());
+
 		int noteSize = this.notePage.getNotesSize();
 		Assertions.assertEquals(0, noteSize);
-
 
 	}
 
