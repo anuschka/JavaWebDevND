@@ -14,6 +14,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CloudStorageApplicationTests {
 
 	@LocalServerPort
@@ -60,16 +61,6 @@ class CloudStorageApplicationTests {
 	@Test
 	@Order(1)
 	public void testValidLoginLogout() {
-		//logout the user
-		homePage.logout();
-
-		//unauthenicated access redirects to login page
-		driver.get("http://localhost:" + this.port + "/home");
-		Assertions.assertEquals("Login", driver.getTitle());
-
-		//unauthenicated access to random page redirects to login page
-		driver.get("http://localhost:" + this.port + "/random");
-		Assertions.assertEquals("Login", driver.getTitle());
 
 		//get the signup page
 		driver.get(baseUrl + "/signup");
@@ -151,8 +142,8 @@ class CloudStorageApplicationTests {
 
 		detail = notePage.getDetail(driver);
 
-		Assertions.assertEquals("Edit Description", detail.get(0));
-		Assertions.assertEquals("This is Description", detail.get(1));
+		Assertions.assertEquals("Edit title", detail.get(0));
+		Assertions.assertEquals("Edit Description", detail.get(1));
 
 		//deletes a note and verifies the note is no longer displayed
 		notePage.deleteNote(driver);

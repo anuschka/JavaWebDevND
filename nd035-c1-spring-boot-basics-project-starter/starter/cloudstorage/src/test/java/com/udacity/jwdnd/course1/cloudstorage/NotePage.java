@@ -1,8 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,7 +41,10 @@ public class NotePage {
     @FindBy(id="note-modal-submit")
     private WebElement submitModalButton;
 
+    private final WebDriver driver;
+
     public NotePage(WebDriver driver){
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
     public int getNotesSize() {
@@ -52,13 +53,8 @@ public class NotePage {
 
     public List<String> getDetail(WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        try{
-            Thread.sleep(1000);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
-        navNoteTab.click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", navNoteTab);
+
         wait.until(ExpectedConditions.elementToBeClickable(addButton));
         List<String> detail = new ArrayList<>(List.of(titleList.get(0).getText(),
                 descriptionList.get(0).getText()));
@@ -67,51 +63,51 @@ public class NotePage {
 
 
     }
-    
+
     public void addNote(WebDriver driver, String title, String description, WebElement nav){
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
-        } catch (TimeoutException ex) {
-            System.out.println("Timeout Exception");
-            nav.click();
-            wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
-        }
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", navNoteTab);
+
         wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(inputTitle)).sendKeys(title);
-        wait.until(ExpectedConditions.elementToBeClickable(inputDescription)).sendKeys(description);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", addButton);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.submitModalButton)).click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].value='" + title + "';", inputTitle);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].value='" + description + "';", inputDescription);
 
-        //wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.submitModalButton));
+
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", submitModalButton);
     }
 
     public void editNote(WebDriver driver, String title, String description){
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
-        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", navNoteTab);
 
-        wait.until(ExpectedConditions.elementToBeClickable((editButton.get(0)))).click();
+        wait.until(ExpectedConditions.elementToBeClickable((editButton.get(0))));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", editButton.get(0));
 
         wait.until(ExpectedConditions.elementToBeClickable(inputTitle));
-        inputTitle.clear();
-        inputTitle.sendKeys(title);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].value='" + title + "';", inputTitle);
 
         wait.until(ExpectedConditions.elementToBeClickable(inputDescription));
-        inputTitle.clear();
-        inputTitle.sendKeys(description);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].value='" + description + "';", inputDescription);
 
-        wait.until(ExpectedConditions.elementToBeClickable(this.submitModalButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.submitModalButton));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", this.submitModalButton);
     }
 
     public void deleteNote(WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
-        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(navNoteTab));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", navNoteTab);
 
-        wait.until(ExpectedConditions.elementToBeClickable(deleteButton.get(0))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(deleteButton.get(0)));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", deleteButton.get(0));
     }
 
 }
