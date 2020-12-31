@@ -29,6 +29,7 @@ class CloudStorageApplicationTests {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private NotePage notePage;
+	private CredentialsPage credentialsPage;
 
 	private static WebDriver driver;
 	private String baseUrl;
@@ -49,6 +50,7 @@ class CloudStorageApplicationTests {
 		this.signupPage = new SignupPage(driver);
 		this.homePage = new HomePage(driver);
 		this.notePage = new NotePage(driver);
+		this.credentialsPage = new CredentialsPage(driver);
 	}
 
 	@AfterAll
@@ -158,6 +160,72 @@ class CloudStorageApplicationTests {
 
 		int noteSize = this.notePage.getNotesSize();
 		Assertions.assertEquals(0, noteSize);
+
+	}
+
+	@Test
+	@Order(3)
+	public void testCredentialFunctions() {
+		//get the signup page
+		driver.get(baseUrl + "/signup");
+		Assertions.assertEquals("Sign Up", driver.getTitle());
+
+		//signs up a new user
+		SignupPage signupPage = new SignupPage(driver);
+		signupPage.signup(firstName, lastName, username, password);
+
+		//get the login page
+		driver.get(baseUrl + "/login");
+		Assertions.assertEquals("Login", driver.getTitle());
+
+		//login the new user
+		loginPage.login(username, password);
+
+
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		//verifies the home page is accessible
+		driver.get(baseUrl +"/home");
+
+		//creates a credential and verifies it is displayed
+		WebElement cred = driver.findElement(By.id("nav-credentials-tab"));
+		cred.click();
+		credentialsPage.addCredential(driver, "url", "username", "password", cred);
+
+		driver.findElement(By.id("home-link")).click();
+
+		driver.get(this.baseUrl + "/home");
+
+		List<String> detail = credentialsPage.getDetail(driver);
+
+		Assertions.assertEquals("url", detail.get(0));
+		Assertions.assertEquals("username", detail.get(1));
+		Assertions.assertNotEquals("password", detail.get(2));
+
+		//edits a credential and verifies the changes are displayed
+		credentialsPage.editCredential(driver, "newurl", "sameusername", "samepassword");
+
+		driver.get("http://localhost:" + this.port +  "/home");
+
+		detail = credentialsPage.getDetail(driver);
+
+		Assertions.assertEquals("newurl", detail.get(0));
+		Assertions.assertEquals("sameusername", detail.get(1));
+		Assertions.assertNotEquals("samepassword", detail.get(2));
+
+		//deletes a credential and verifies the credential is no longer displayed
+		credentialsPage.deleteCredential(driver);
+		driver.get("http://localhost:" + this.port + "/home");
+
+		wait.until(driver -> driver.findElement(By.id("nav-credentials-tab"))).click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		int credentialSize = this.credentialsPage.getCredentialSize();
+		Assertions.assertEquals(0, credentialSize);
 
 	}
 

@@ -28,7 +28,7 @@ public class CredentialsController {
         credential.setUserId(userId);
         credential.setCredentialId(credentialsForm.getCredentialId());
         credential.setUrl(credentialsForm.getUrl());
-        credential.setUsername(credentialsForm.getUrl());
+        credential.setUsername(credentialsForm.getUsername());
         credential.setPassword(credentialsForm.getPassword());
         return credential;
     }
