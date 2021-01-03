@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4727c8af-d705-47b2-806d-940dce52468d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson3-graphql/graphql/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson3-graphql/graphql/src/main/resources/data.something" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/items/target/classes/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1441" />
+    <option name="width" value="1919" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectId" id="1mZ0dQymyasEgpP3knLkM70lJ5W" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="show.run.dashboard.notification" value="false" />
+  </component>
+  <component name="RunManager" selected="Application.EurekaApplication">
+    <configuration name="EurekaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.udacity.eureka.EurekaApplication" />
+      <module name="eureka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.eureka.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="eureka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.eureka.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.udacity.eureka.EurekaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MicroservicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="microservices" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.udacity.microservices.MicroservicesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EurekaApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4727c8af-d705-47b2-806d-940dce52468d" name="Default Changelist" comment="" />
+      <created>1561256876695</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561256876695</updated>
+      <workItem from="1561256877960" duration="11000" />
+      <workItem from="1561315644519" duration="34000" />
+      <workItem from="1561319684716" duration="27000" />
+      <workItem from="1561319763826" duration="6000" />
+      <workItem from="1561914438265" duration="3330000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3408000" />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="282" key="GridCell.Tab.0.bottom" timestamp="1609686809653">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.0.bottom/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809653" />
+    <state width="1398" height="282" key="GridCell.Tab.0.center" timestamp="1609686809652">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.0.center/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809652" />
+    <state width="1398" height="282" key="GridCell.Tab.0.left" timestamp="1609686809652">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.0.left/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809652" />
+    <state width="1398" height="282" key="GridCell.Tab.0.right" timestamp="1609686809652">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.0.right/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809652" />
+    <state width="1398" height="282" key="GridCell.Tab.1.bottom" timestamp="1609686809653">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.1.bottom/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809653" />
+    <state width="1398" height="282" key="GridCell.Tab.1.center" timestamp="1609686809653">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.1.center/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809653" />
+    <state width="1398" height="282" key="GridCell.Tab.1.left" timestamp="1609686809653">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.1.left/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809653" />
+    <state width="1398" height="282" key="GridCell.Tab.1.right" timestamp="1609686809653">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="282" key="GridCell.Tab.1.right/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686809653" />
+    <state x="208" y="42" key="SettingsEditor" timestamp="1609686723398">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="208" y="42" key="SettingsEditor/0.25.1440.875/-2560.-1075.2560.1415@0.25.1440.875" timestamp="1609686723398" />
+  </component>
+</project>
