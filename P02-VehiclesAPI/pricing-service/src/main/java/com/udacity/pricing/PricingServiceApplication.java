@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import java.util.stream.LongStream;
@@ -15,6 +16,7 @@ import java.util.stream.LongStream;
  * Creates a Spring Boot Application to run the Pricing MicroService.
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class PricingServiceApplication {
 
     @Autowired
