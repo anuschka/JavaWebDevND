@@ -28,8 +28,8 @@ public class PricingServiceApplication {
     InitializingBean generateInitialData() {
         return () -> {
             LongStream
-                    .range(1, 20)
-                    .forEach(i -> priceRepository.save(new Price("USD", BigDecimalUtils.randomPrice(), i)));
+                    .range(1, 21)
+                    .forEach(i -> priceRepository.save(new Price(i,"USD",BigDecimalUtils.randomPrice())));
         };
     }
 
