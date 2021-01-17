@@ -26,13 +26,13 @@ public class PricingServiceApplication {
         SpringApplication.run(PricingServiceApplication.class, args);
     }
 
-    @Bean
-    InitializingBean generateInitialData() {
-        return () -> {
-            LongStream
-                    .range(1, 21)
-                    .forEach(i -> priceRepository.save(new Price(i,"USD",BigDecimalUtils.randomPrice())));
-        };
-    }
+    //@Bean
+    //InitializingBean generateInitialData() {
+    //    return () -> {
+    //        LongStream
+    //                .range(1, 21)
+    //                .forEach(i -> priceRepository.save(new Price(i,"USD",BigDecimalUtils.randomPrice())));
+    //    };
+    //}
 
 }
