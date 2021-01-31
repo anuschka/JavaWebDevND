@@ -1,10 +1,18 @@
 package com.udacity.jdnd.course3.critter.user;
 
+import com.udacity.jdnd.course3.critter.data.Customer;
+import com.udacity.jdnd.course3.critter.data.Employee;
+import com.udacity.jdnd.course3.critter.data.Pet;
+import com.udacity.jdnd.course3.critter.service.CustomerServiceImpl;
+import com.udacity.jdnd.course3.critter.service.PetServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Handles web requests related to Users.
@@ -16,14 +24,32 @@ import java.util.Set;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    CustomerServiceImpl customerService;
+    PetServiceImpl petService;
+
+
+    public UserController(CustomerServiceImpl customerService, PetServiceImpl petService) {
+        this.customerService = customerService;
+        this.petService = petService;
+
+    }
+
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        throw new UnsupportedOperationException();
+        // Saving customer data and returning it
+        Customer createdCustomer = customerService.save(convertCustomerDTOToCustomer(customerDTO));
+
+        // Setting the id to customer DTO so that it is also presented to the front end side.
+        customerDTO.setId(createdCustomer.getId());
+        return customerDTO;
     }
 
     @GetMapping("/customer")
-    public List<CustomerDTO> getAllCustomers(){
-        throw new UnsupportedOperationException();
+    public List<CustomerDTO> getAllCustomers() {
+        List<Customer> customers = customerService.getAllCustomers();
+        List<CustomerDTO> customerDTOs = customers.stream().map(this::convertCustomerToCustomerDTO).collect(Collectors.toList());
+        return customerDTOs;
     }
 
     @GetMapping("/customer/pet/{petId}")
@@ -50,5 +76,46 @@ public class UserController {
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * Helper Method
+     * @param customerDTO   customerDTO object to be converted into entity
+     * @return  entity form of Customer
+     */
+    private Customer convertCustomerDTOToCustomer(CustomerDTO customerDTO){
+        Customer customer = new Customer();
+        customer.setName(customerDTO.getName());
+        customer.setPhoneNumber(customerDTO.getPhoneNumber());
+        customer.setNotes(customerDTO.getNotes());
+
+        if (!customerDTO.getPetIds().isEmpty()) {
+            List<Long> petIds = customerDTO.getPetIds();
+            List<Pet> pets = petService.getAllPetsByIds(petIds);
+            customer.setPets(pets);
+        }
+        return customer;
+    }
+    /**
+     * Helper Method
+     * @param customer  customer object to be converted into DTO
+     * @return DTO form of Customer
+     */
+    private CustomerDTO convertCustomerToCustomerDTO(Customer customer){
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(customer.getId());
+        customerDTO.setName(customer.getName());
+        customerDTO.setPhoneNumber(customer.getPhoneNumber());
+        customerDTO.setNotes(customer.getNotes());
+
+        List<Long> petIds = new ArrayList<>();
+
+        if (!customer.getPets().isEmpty()) {
+            petIds = customer.getPets().stream().map(Pet::getId).collect(Collectors.toList());
+        }
+        customerDTO.setPetIds(petIds);
+        return customerDTO;
+    }
+
+
 
 }

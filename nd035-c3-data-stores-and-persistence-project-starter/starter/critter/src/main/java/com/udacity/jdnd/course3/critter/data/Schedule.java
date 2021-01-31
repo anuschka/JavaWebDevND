@@ -10,6 +10,7 @@ import java.util.Set;
  * Represents the form that schedule request and response data takes. Does not map
  * to the database directly.
  */
+@Entity
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
