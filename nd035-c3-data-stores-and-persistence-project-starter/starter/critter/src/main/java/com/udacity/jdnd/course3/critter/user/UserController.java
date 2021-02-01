@@ -40,6 +40,15 @@ public class UserController {
         // Saving customer data and returning it
         Customer createdCustomer = customerService.save(convertCustomerDTOToCustomer(customerDTO));
 
+        //if the getPets() is not null we will map all the ids of the pets that a given Customer has and we
+        // will return it, if there is no pet id it will be returned in response null
+        if(createdCustomer.getPets() != null) {
+            customerDTO.setPetIds(createdCustomer.getPets().stream()
+                    .map(Pet::getId)
+                    .collect(Collectors.toList())
+            );
+        }
+
         // Setting the id to customer DTO so that it is also presented to the front end side.
         customerDTO.setId(createdCustomer.getId());
         return customerDTO;
@@ -88,11 +97,6 @@ public class UserController {
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
         customer.setNotes(customerDTO.getNotes());
 
-        if (!customerDTO.getPetIds().isEmpty()) {
-            List<Long> petIds = customerDTO.getPetIds();
-            List<Pet> pets = petService.getAllPetsByIds(petIds);
-            customer.setPets(pets);
-        }
         return customer;
     }
     /**
