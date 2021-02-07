@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Represents the form that customer request and response data takes. Does not map
@@ -13,7 +14,7 @@ public class Customer {
     private long id;
     @OneToMany(mappedBy = "customer",
             targetEntity = Pet.class)
-    private List<Pet> pets;
+    private List<Pet> pets = new ArrayList<>();
     private String name;
     private String phoneNumber;
     private String notes;

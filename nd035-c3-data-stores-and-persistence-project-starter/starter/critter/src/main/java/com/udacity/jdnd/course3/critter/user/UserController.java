@@ -4,6 +4,7 @@ import com.udacity.jdnd.course3.critter.data.Customer;
 import com.udacity.jdnd.course3.critter.data.Employee;
 import com.udacity.jdnd.course3.critter.data.Pet;
 import com.udacity.jdnd.course3.critter.service.CustomerServiceImpl;
+import com.udacity.jdnd.course3.critter.service.EmployeeServiceImpl;
 import com.udacity.jdnd.course3.critter.service.PetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +25,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserController {
 
+
     @Autowired
     CustomerServiceImpl customerService;
     PetServiceImpl petService;
+    EmployeeServiceImpl employeeService;
 
 
-    public UserController(CustomerServiceImpl customerService, PetServiceImpl petService) {
+    public UserController(CustomerServiceImpl customerService, PetServiceImpl petService, EmployeeServiceImpl employeeService) {
         this.customerService = customerService;
         this.petService = petService;
+        this.employeeService = employeeService;
 
     }
 
@@ -63,27 +67,43 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        throw new UnsupportedOperationException();
+        Pet pet = petService.getPetById(petId);
+        Customer customer = pet.getCustomer();
+        CustomerDTO customerDTO = convertCustomerToCustomerDTO(customer);
+        return customerDTO;
     }
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Employee createdEmployee = employeeService.save(convertEmployeeDTOToEmployee(employeeDTO));
+        employeeDTO.setId(createdEmployee.getId());
+        return employeeDTO;
     }
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        Employee retrievedEmployee = employeeService.getEmployeeById(employeeId);
+        EmployeeDTO employeeDTO = convertEmployeeToEmployeeDTO(retrievedEmployee);
+        return employeeDTO;
     }
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        employee.setDaysAvailable(daysAvailable);
+        employeeService.save(employee);
     }
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Set<EmployeeSkill> skills = employeeDTO.getSkills();
+        DayOfWeek day = employeeDTO.getDate().getDayOfWeek();
+        List<Employee> employees = employeeService.getEmployeesByAvailability(skills, day);
+        if (!employees.isEmpty()) {
+            List<EmployeeDTO> employeeDTOS = employees.stream().map(this::convertEmployeeToEmployeeDTO).collect(Collectors.toList());
+            return employeeDTOS;
+        }
+        return null;
     }
 
     /**
@@ -119,7 +139,36 @@ public class UserController {
         customerDTO.setPetIds(petIds);
         return customerDTO;
     }
+    /**
+     * Helper Method
+     * @param employeeDTO   employeeDTO object to be converted into entity
+     * @return entity form of Employee
+     */
+    private Employee convertEmployeeDTOToEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setName(employeeDTO.getName());
+        employee.setSkills(employeeDTO.getSkills());
+        if(employeeDTO.getDaysAvailable()!=null){
+            employee.setDaysAvailable(employeeDTO.getDaysAvailable());
+        }
+        return employee;
+    }
 
+    /**
+     * Helper Method
+     * @param employee  employee object to be converted into DTO
+     * @return DTO form of employee
+     */
+    private EmployeeDTO convertEmployeeToEmployeeDTO(Employee employee) {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(employee.getId());
+        employeeDTO.setName(employee.getName());
+        employeeDTO.setSkills(employee.getSkills());
+        if(employee.getDaysAvailable()!=null){
+            employeeDTO.setDaysAvailable(employee.getDaysAvailable());
+        }
+        return employeeDTO;
+    }
 
 
 }

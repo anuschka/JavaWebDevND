@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Handles web requests related to Pets.
@@ -43,17 +44,23 @@ public class PetController {
 
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable long petId) {
-        throw new UnsupportedOperationException();
+        Pet pet = petService.getPetById(petId);
+        PetDTO petDTO = convertPetToPetDTO(pet);
+        return petDTO;
     }
 
     @GetMapping
     public List<PetDTO> getPets(){
-        throw new UnsupportedOperationException();
+        List<Pet> pets = petService.getAllPets();
+        List<PetDTO> petDTOS = pets.stream().map(this::convertPetToPetDTO).collect(Collectors.toList());
+        return petDTOS;
     }
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
-        throw new UnsupportedOperationException();
+        List<Pet> pets = petService.getAllPetsByOwnerId(ownerId);
+        List<PetDTO> petDTOS = pets.stream().map(this::convertPetToPetDTO).collect(Collectors.toList());
+        return petDTOS;
     }
 
     /**
@@ -72,5 +79,17 @@ public class PetController {
             pet.setCustomer(customer);
         }
         return pet;
+    }
+    private PetDTO convertPetToPetDTO(Pet pet){
+        PetDTO petDTO = new PetDTO();
+        petDTO.setId(pet.getId());
+        petDTO.setType(pet.getType());
+        petDTO.setName(pet.getName());
+        if(pet.getCustomer()!=null) {
+            petDTO.setOwnerId(pet.getCustomer().getId());
+        }
+        petDTO.setBirthDate(pet.getBirthDate());
+        petDTO.setNotes(pet.getNotes());
+        return petDTO;
     }
 }
